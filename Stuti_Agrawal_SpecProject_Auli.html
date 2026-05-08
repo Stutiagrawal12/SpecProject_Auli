@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spec Project — Auli Content Strategy by Stuti Agrawal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --clay:    #D4A98A;
+    --clay-lt: #F0DDD0;
+    --forest:  #2D4A3E;
+    --forest-lt: #E8EDE9;
+    --ink:     #1A1611;
+    --ink-60:  #6B5F52;
+    --ink-30:  #B5A99A;
+    --cream:   #FAF6F1;
+    --warm:    #F5EDE3;
+    --gold:    #C4923A;
+    --border:  rgba(26,22,17,0.1);
+    --page:    900px;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Syne', sans-serif;
+    font-weight: 400;
+  }
+
+  /* ─── PAGE WRAPPER ─── */
+  .doc { max-width: var(--page); margin: 0 auto; padding: 60px 48px 80px; }
+
+  /* ─── COVER ─── */
+  .cover {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 320px;
+    margin-bottom: 64px;
+    position: relative;
+  }
+
+  .cover-left {
+    background: var(--forest);
+    padding: 44px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover-left::after {
+    content: '';
+    position: absolute;
+    bottom: -50px; right: -50px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 40px solid rgba(196,146,58,0.15);
+  }
+
+  .cover-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 20px;
+  }
+
+  .cover-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 58px;
+    font-weight: 300;
+    color: #FAF6F1;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+  }
+
+  .cover-brand em {
+    font-style: italic;
+    color: var(--clay);
+  }
+
+  .cover-sub {
+    font-size: 11px;
+    color: rgba(250,246,241,0.45);
+    letter-spacing: 0.1em;
+    margin-top: 20px;
+  }
+
+  .cover-meta {
+    font-size: 11px;
+    color: rgba(250,246,241,0.35);
+    line-height: 2;
+  }
+
+  .cover-right {
+    background: var(--clay-lt);
+    padding: 44px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  .cover-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-60);
+  }
+
+  .cover-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+
+  .ctag {
+    font-size: 10px;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    color: var(--ink-60);
+    background: rgba(255,255,255,0.5);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── SECTION HEADING ─── */
+  .sh {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 28px;
+    margin-top: 56px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sh-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--ink-30);
+  }
+
+  .sh-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .sh-line { flex: 1; }
+
+  /* ─── BRAND AUDIT ─── */
+  .audit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 20px;
+  }
+
+  .audit-card {
+    background: var(--warm);
+    padding: 24px 26px;
+  }
+
+  .audit-card.dark { background: var(--forest); }
+
+  .ac-label {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-60);
+    margin-bottom: 10px;
+  }
+
+  .audit-card.dark .ac-label { color: rgba(250,246,241,0.4); }
+
+  .ac-val {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+
+  .audit-card.dark .ac-val { color: rgba(250,246,241,0.85); }
+
+  .ac-val ul { padding-left: 0; list-style: none; }
+  .ac-val ul li { padding: 3px 0; display: flex; gap: 8px; align-items: flex-start; }
+  .ac-val ul li::before { content: '—'; color: var(--clay); flex-shrink: 0; }
+
+  /* ─── PERSONA ─── */
+  .persona {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+
+  .persona-left {
+    background: var(--forest);
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+  }
+
+  .persona-avatar {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: var(--clay);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    color: #FAF6F1;
+    margin-bottom: 10px;
+  }
+
+  .persona-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: #FAF6F1;
+  }
+
+  .persona-age {
+    font-size: 11px;
+    color: rgba(250,246,241,0.45);
+  }
+
+  .persona-right {
+    background: var(--warm);
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  .pf-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-30);
+    margin-bottom: 6px;
+  }
+
+  .pf-val {
+    font-size: 13px;
+    color: var(--ink-60);
+    line-height: 1.55;
+  }
+
+  /* ─── CONTENT PILLARS ─── */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-bottom: 20px;
+  }
+
+  .pillar {
+    padding: 26px 20px;
+    background: var(--warm);
+    border-top: 3px solid transparent;
+  }
+
+  .pillar:nth-child(1) { border-color: var(--clay); }
+  .pillar:nth-child(2) { border-color: var(--forest); }
+  .pillar:nth-child(3) { border-color: var(--gold); }
+  .pillar:nth-child(4) { border-color: #8B9D77; }
+
+  .pillar-icon {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .pillar-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .pillar-desc {
+    font-size: 12px;
+    color: var(--ink-60);
+    line-height: 1.6;
+  }
+
+  .pillar-pct {
+    margin-top: 14px;
+    font-size: 11px;
+    color: var(--ink-30);
+    letter-spacing: 0.1em;
+  }
+
+  /* ─── MOCK POSTS ─── */
+  .posts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .mock-post {
+    border: 1px solid var(--border);
+    background: white;
+    overflow: hidden;
+  }
+
+  .post-platform-bar {
+    padding: 8px 14px;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .pb-ig { background: #F5EBE8; color: #8B4A3C; }
+  .pb-x  { background: #ECEAE6; color: #44403C; }
+
+  .post-visual {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Post visuals */
+  .pv-1 { background: linear-gradient(145deg, #2D4A3E 0%, #1A2D26 100%); }
+  .pv-2 { background: linear-gradient(160deg, #F0DDD0 0%, #E8C9B0 100%); }
+  .pv-3 { background: #FAF0E8; border: 1px solid #E8D5C0; }
+  .pv-4 { background: #1A1611; }
+  .pv-5 { background: linear-gradient(135deg, #2D4A3E, #3D6B58); }
+  .pv-6 { background: #F5EDE3; }
+
+  .post-visual-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.3;
+    z-index: 1;
+    position: relative;
+  }
+
+  .post-visual-sub {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 10px;
+    z-index: 1;
+    position: relative;
+  }
+
+  .post-visual-tag {
+    position: absolute;
+    bottom: 14px; right: 14px;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.6);
+  }
+
+  .post-body { padding: 16px; }
+
+  .post-type {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-30);
+    margin-bottom: 6px;
+  }
+
+  .post-caption {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: var(--ink-60);
+    margin-bottom: 10px;
+  }
+
+  .post-caption strong { color: var(--ink); font-weight: 500; }
+
+  .post-hashtags {
+    font-size: 11px;
+    color: var(--clay);
+    line-height: 1.6;
+  }
+
+  .post-goal {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--ink-60);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .post-goal-label {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-30);
+    flex-shrink: 0;
+  }
+
+  /* ─── CALENDAR ─── */
+  .calendar {
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .cal-header {
+    display: grid;
+    grid-template-columns: 80px repeat(7, 1fr);
+    background: var(--forest);
+    color: rgba(250,246,241,0.7);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .cal-header div { padding: 10px 8px; text-align: center; }
+
+  .cal-week {
+    display: grid;
+    grid-template-columns: 80px repeat(7, 1fr);
+    border-top: 1px solid var(--border);
+  }
+
+  .cal-week-label {
+    background: var(--warm);
+    padding: 10px 8px;
+    font-size: 10px;
+    color: var(--ink-30);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    border-right: 1px solid var(--border);
+  }
+
+  .cal-cell {
+    padding: 8px;
+    border-right: 1px solid var(--border);
+    min-height: 64px;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .cal-cell:last-child { border-right: none; }
+  .cal-cell.empty { background: rgba(250,246,241,0.3); }
+
+  .cal-post {
+    padding: 4px 6px;
+    margin-bottom: 3px;
+    font-size: 10px;
+    line-height: 1.35;
+  }
+
+  .cp-ig { background: #F5EBE8; color: #8B4A3C; border-left: 2px solid var(--clay); }
+  .cp-x  { background: #ECEAE6; color: #3A3630; border-left: 2px solid #78716C; }
+  .cp-both { background: var(--forest-lt); color: var(--forest); border-left: 2px solid var(--forest); }
+
+  /* ─── KPIs ─── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .kpi-card {
+    background: var(--warm);
+    padding: 24px 22px;
+  }
+
+  .kpi-platform {
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-30);
+    margin-bottom: 12px;
+  }
+
+  .kpi-metric {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .kpi-metric:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .kpi-why {
+    font-size: 11px;
+    color: var(--ink-60);
+    margin-top: 2px;
+    line-height: 1.45;
+  }
+
+  /* ─── BYLINE ─── */
+  .byline {
+    margin-top: 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+
+  .byline-left {
+    background: var(--forest);
+    padding: 30px 36px;
+  }
+
+  .byline-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: rgba(250,246,241,0.4);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .byline-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 300;
+    color: #FAF6F1;
+  }
+
+  .byline-contact {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--clay);
+    line-height: 1.9;
+  }
+
+  .byline-right {
+    background: var(--clay-lt);
+    padding: 30px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .byline-note {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+
+  /* ─── UTILITY ─── */
+  .gap-sm { margin-top: 12px; }
+  .prose {
+    font-size: 13.5px;
+    color: var(--ink-60);
+    line-height: 1.75;
+    max-width: 680px;
+  }
+  .prose strong { color: var(--ink); font-weight: 500; }
+
+  @media (max-width: 680px) {
+    .doc { padding: 30px 20px; }
+    .cover, .audit-grid, .posts-grid, .kpi-grid, .byline { grid-template-columns: 1fr; }
+    .persona { grid-template-columns: 1fr; }
+    .pillars { grid-template-columns: 1fr 1fr; }
+    .cover-brand { font-size: 38px; }
+    .cal-header, .cal-week { grid-template-columns: 60px repeat(4, 1fr); }
+    .cal-header div:nth-child(n+6), .cal-cell:nth-child(n+6) { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-left">
+      <div>
+        <div class="cover-eyebrow">Spec Project · Content Strategy 2025</div>
+        <div class="cover-brand">Auli<br><em>Skincare</em></div>
+        <div class="cover-sub">Instagram + X · 30-Day Strategy</div>
+      </div>
+      <div class="cover-meta">
+        Prepared by Stuti Agrawal<br>
+        Content Strategist · May 2025
+      </div>
+    </div>
+    <div class="cover-right">
+      <div class="cover-label">The brief</div>
+      <div class="cover-desc">Auli is an Indian D2C Ayurvedic skincare brand with a strong product story — but social content that doesn't match its depth. This strategy closes that gap.</div>
+      <div class="tag-row">
+        <span class="ctag">D2C skincare</span>
+        <span class="ctag">Ayurvedic</span>
+        <span class="ctag">Instagram + X</span>
+        <span class="ctag">Gen Z + Millennial</span>
+        <span class="ctag">Organic growth</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 BRAND AUDIT -->
+  <div class="sh">
+    <span class="sh-num">01</span>
+    <h2 class="sh-title">Brand Audit — Where Auli Is Now</h2>
+    <div class="sh-line"></div>
+  </div>
+
+  <p class="prose" style="margin-bottom: 20px;">Auli Lifestyle is a Chandigarh-based Ayurvedic skincare brand founded in 2018. Products are formulated around traditional Indian botanical ingredients — Kumkumadi, Neem, Turmeric — with a premium, clean-beauty positioning. The brand has genuine product credibility but its social presence underdelivers compared to that story.</p>
+
+  <div class="audit-grid">
+    <div class="audit-card">
+      <div class="ac-label">What's working</div>
+      <div class="ac-val">
+        <ul>
+          <li>Strong ingredient story — Ayurveda angle is credible and differentiated</li>
+          <li>Product packaging is aesthetic and photogenic</li>
+          <li>Growing D2C skincare category tailwind in India</li>
+          <li>Loyal repeat customer base with real reviews</li>
+        </ul>
+      </div>
+    </div>
+    <div class="audit-card">
+      <div class="ac-label">Gaps on social</div>
+      <div class="ac-val">
+        <ul>
+          <li>Content is product-heavy — too many flat lays, not enough storytelling</li>
+          <li>No consistent content voice or recurring formats</li>
+          <li>X presence is minimal — missing a conversation-led audience</li>
+          <li>No behind-the-scenes or founder content building trust</li>
+          <li>User-generated content not being amplified</li>
+        </ul>
+      </div>
+    </div>
+    <div class="audit-card dark">
+      <div class="ac-label">Opportunity</div>
+      <div class="ac-val">
+        The "slow beauty" movement is gaining traction among Indian Gen Z — less products, more intention. Auli's Ayurvedic roots are a perfect fit for this shift. <strong style="color:var(--clay);">The brand needs to sell a ritual, not just a product.</strong>
+      </div>
+    </div>
+    <div class="audit-card">
+      <div class="ac-label">Competitive gap</div>
+      <div class="ac-val">
+        <ul>
+          <li>Minimalist.in — strong educational content, weak aesthetic</li>
+          <li>Juicy Chemistry — good storytelling, crowded positioning</li>
+          <li>Forest Essentials — premium but cold, no community feel</li>
+          <li><strong>Auli's whitespace: warm, ritual-driven, deeply Indian but modern</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 AUDIENCE PERSONA -->
+  <div class="sh">
+    <span class="sh-num">02</span>
+    <h2 class="sh-title">Audience Persona</h2>
+    <div class="sh-line"></div>
+  </div>
+
+  <div class="persona">
+    <div class="persona-left">
+      <div class="persona-avatar">R</div>
+      <div class="persona-name">Rhea</div>
+      <div class="persona-age">24 · Delhi / Bangalore</div>
+    </div>
+    <div class="persona-right">
+      <div>
+        <div class="pf-label">Who she is</div>
+        <div class="pf-val">Working professional or final-year student. Spends ₹1,500–4,000/month on skincare. Reads ingredient labels. Distrustful of mass-market brands.</div>
+      </div>
+      <div>
+        <div class="pf-label">What she wants</div>
+        <div class="pf-val">Skincare that feels intentional. Brands that educate, not just sell. Content that fits into her aesthetic. Morning routine as self-care ritual.</div>
+      </div>
+      <div>
+        <div class="pf-label">Where she is</div>
+        <div class="pf-val">Instagram Reels (saves tutorials), X (skincare discourse, hot takes), Pinterest (mood boards, routine inspo).</div>
+      </div>
+      <div>
+        <div class="pf-label">What stops her buying</div>
+        <div class="pf-val">Doesn't trust brands that only show polished ads. Needs social proof, real results, and someone who "gets" Indian skin.</div>
+      </div>
+      <div>
+        <div class="pf-label">Her trigger</div>
+        <div class="pf-val">"If it feels like it was made for me specifically — my skin type, my climate, my culture — I'll buy it."</div>
+      </div>
+      <div>
+        <div class="pf-label">Content she saves</div>
+        <div class="pf-val">Ingredient explainers, "what I use every morning," honest reviews, Ayurvedic tips, slow living aesthetics.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 CONTENT PILLARS -->
+  <div class="sh">
+    <span class="sh-num">03</span>
+    <h2 class="sh-title">Content Pillars</h2>
+    <div class="sh-line"></div>
+  </div>
+
+  <p class="prose" style="margin-bottom:20px;">Every post maps to one of four pillars. The mix keeps the feed from feeling like a catalogue while ensuring each piece has a clear job.</p>
+
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-icon">🌿</div>
+      <div class="pillar-name">The Ritual</div>
+      <div class="pillar-desc">Morning and evening routines. Slow beauty content. "How to use" in an aspirational, non-instructional way. Makes the product feel like a practice, not a purchase.</div>
+      <div class="pillar-pct">35% of content</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">🧪</div>
+      <div class="pillar-name">The Ingredient</div>
+      <div class="pillar-desc">Deep dives into Kumkumadi, Neem, Saffron, Turmeric. "Why we use X instead of Y." Builds ingredient trust — the #1 purchase driver for this audience.</div>
+      <div class="pillar-pct">25% of content</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">🪞</div>
+      <div class="pillar-name">Real Skin</div>
+      <div class="pillar-desc">UGC amplification, unfiltered before/after, community spotlights. Indian skin tones, real lighting. Counters the polished-ad distrust. Most likely to convert.</div>
+      <div class="pillar-pct">25% of content</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">💬</div>
+      <div class="pillar-name">The Conversation</div>
+      <div class="pillar-desc">Hot takes on skincare myths, polls, X threads, replies to trending discourse. "SPF is not just for summer." Builds brand personality, earns followers beyond existing audience.</div>
+      <div class="pillar-pct">15% of content</div>
+    </div>
+  </div>
+
+  <!-- 04 SAMPLE POSTS -->
+  <div class="sh">
+    <span class="sh-num">04</span>
+    <h2 class="sh-title">Sample Posts — 6 Mock Creatives</h2>
+    <div class="sh-line"></div>
+  </div>
+
+  <div class="posts-grid">
+
+    <!-- Post 1 - IG Ritual -->
+    <div class="mock-post">
+      <div class="post-platform-bar pb-ig">● Instagram · Reel cover</div>
+      <div class="post-visual pv-1">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 70% 30%, rgba(212,169,138,0.15), transparent 60%);"></div>
+        <div class="post-visual-text" style="color:#FAF6F1;">Your skin doesn't<br>need more products.<br><em style="color:var(--clay);">It needs a ritual.</em></div>
+        <div class="post-visual-sub" style="color:rgba(250,246,241,0.4);">Auli Lifestyle</div>
+        <div class="post-visual-tag">The Ritual</div>
+      </div>
+      <div class="post-body">
+        <div class="post-type">Reel · Pillar: The Ritual</div>
+        <div class="post-caption">5 minutes. Every morning. That's all it takes to show up for your skin. <strong>Swipe to see our 3-step AM ritual with Kumkumadi face oil — made for Indian summers. ☀️</strong><br><br>Save this for tomorrow morning.</div>
+        <div class="post-hashtags">#SlowBeauty #AyurvedicSkincare #MorningRitual #AuliLifestyle #KumkumadiOil #IndianSkincare</div>
+        <div class="post-goal"><span class="post-goal-label">Goal:</span> Saves + watch time → algorithmic push</div>
+      </div>
+    </div>
+
+    <!-- Post 2 - IG Ingredient -->
+    <div class="mock-post">
+      <div class="post-platform-bar pb-ig">● Instagram · Carousel</div>
+      <div class="post-visual pv-2">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:0.2em;text-transform:uppercase;color:#78543A;margin-bottom:12px;">Slide 1 of 5</div>
+        <div class="post-visual-text" style="color:#1A1611;">Why Kumkumadi<br>is worth every rupee.</div>
+        <div class="post-visual-sub" style="color:#B5917A;">An ingredient story.</div>
+        <div style="position:absolute;bottom:14px;left:14px;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(26,22,17,0.35);">Auli Lifestyle · The Ingredient</div>
+      </div>
+      <div class="post-body">
+        <div class="post-type">Carousel · Pillar: The Ingredient</div>
+        <div class="post-caption">Saffron. Sandalwood. 26 botanical actives. Kumkumadi isn't a trend — it's a 3,000-year-old formula that just happens to be backed by modern dermatology now. <strong>Slide through to understand what you're actually putting on your face.</strong></div>
+        <div class="post-hashtags">#IngredientCheck #Kumkumadi #AyurvedaForSkin #CleanBeautyIndia #SkinEducation</div>
+        <div class="post-goal"><span class="post-goal-label">Goal:</span> Saves + shares → trust building → conversion</div>
+      </div>
+    </div>
+
+    <!-- Post 3 - IG Real Skin -->
+    <div class="mock-post">
+      <div class="post-platform-bar pb-ig">● Instagram · Static + UGC</div>
+      <div class="post-visual pv-3">
+        <div style="width:80px;height:80px;border-radius:50%;background:#E8C9A8;margin-bottom:16px;display:flex;align-items:center;justify-content:center;font-size:30px;">🪞</div>
+        <div class="post-visual-text" style="color:#1A1611;font-size:18px;">"I've tried 12 face oils.<br>This is the only one<br>my skin didn't reject."</div>
+        <div class="post-visual-sub" style="color:#B5917A;margin-top:8px;">— @rhea.skincare.diaries</div>
+      </div>
+      <div class="post-body">
+        <div class="post-type">UGC Repost · Pillar: Real Skin</div>
+        <div class="post-caption">Sensitive skin, oily T-zone, humid Delhi weather. <strong>Rhea tried them all. She didn't expect Auli to be different.</strong> (We're glad it was.) 🌿<br><br>DM us your skin story — we'd love to share it.</div>
+        <div class="post-hashtags">#RealSkin #AuliCommunity #IndianSkinType #SensitiveSkin #OilySkintok</div>
+        <div class="post-goal"><span class="post-goal-label">Goal:</span> Comments + DMs + social proof</div>
+      </div>
+    </div>
+
+    <!-- Post 4 - X Thread -->
+    <div class="mock-post">
+      <div class="post-platform-bar pb-x">✕ X (Twitter) · Thread</div>
+      <div class="post-visual pv-4" style="text-align:left;align-items:flex-start;padding:22px;">
+        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,246,241,0.35);margin-bottom:14px;">@AuliLifestyle</div>
+        <div style="font-size:15px;color:#FAF6F1;line-height:1.6;font-family:'Cormorant Garamond',serif;">Hot take: most "Ayurvedic" skincare brands are just using the word Ayurveda as marketing.<br><br>Here's how to tell if a brand actually means it 🧵</div>
+        <div style="margin-top:16px;font-size:11px;color:rgba(250,246,241,0.35);">1/6 · thread</div>
+      </div>
+      <div class="post-body">
+        <div class="post-type">Thread · Pillar: The Conversation</div>
+        <div class="post-caption"><strong>Thread structure (6 tweets):</strong> 1/ The hot take hook · 2/ What "authentic Ayurveda" actually means · 3/ Red flags to look for (fragrance, fillers) · 4/ What Auli does differently · 5/ Ingredient sourcing transparency · 6/ CTA — "Ask us anything about our formula."</div>
+        <div class="post-hashtags">#Skincare #AyurvedicBeauty #IndianSkincare #SkincareTwitter</div>
+        <div class="post-goal"><span class="post-goal-label">Goal:</span> Retweets + follows + brand authority</div>
+      </div>
+    </div>
+
+    <!-- Post 5 - X Hot Take -->
+    <div class="mock-post">
+      <div class="post-platform-bar pb-x">✕ X (Twitter) · Single tweet</div>
+      <div class="post-visual pv-5" style="align-items:flex-start;padding:24px;">
+        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,246,241,0.35);margin-bottom:14px;">@AuliLifestyle</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:19px;color:#FAF6F1;line-height:1.5;">Indian skin in Indian summer needs Indian skincare. Radical concept, apparently.</div>
+        <div style="margin-top:20px;font-size:11px;color:rgba(250,246,241,0.4);">💬 designed to get quote-tweets</div>
+      </div>
+      <div class="post-body">
+        <div class="post-type">Hot take · Pillar: The Conversation</div>
+        <div class="post-caption">Short, pointed, shareable. Designed to earn quote-tweets from people who agree — and constructive debate from those who don't. <strong>Both outcomes grow reach.</strong> Works best posted during peak skincare discourse hours (8–10 PM IST).</div>
+        <div class="post-hashtags">#IndianSkincare #Melanin #SkinPositivity</div>
+        <div class="post-goal"><span class="post-goal-label">Goal:</span> Quote-tweets + follows + viral reach</div>
+      </div>
+    </div>
+
+    <!-- Post 6 - IG Poll/Story -->
+    <div class="mock-post">
+      <div class="post-platform-bar pb-ig">● Instagram · Story Poll</div>
+      <div class="post-visual pv-6">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#1A1611;margin-bottom:20px;line-height:1.3;">What does your skin need right now?</div>
+        <div style="display:flex;flex-direction:column;gap:10px;width:100%;">
+          <div style="background:#2D4A3E;color:#FAF6F1;padding:10px 16px;font-size:13px;text-align:center;">💧 Deep hydration</div>
+          <div style="background:#E8C9A8;color:#1A1611;padding:10px 16px;font-size:13px;text-align:center;">✨ Brightening + glow</div>
+          <div style="background:#F0DDD0;color:#1A1611;padding:10px 16px;font-size:13px;text-align:center;">🌿 Calming + redness</div>
+          <div style="background:#1A1611;color:#FAF6F1;padding:10px 16px;font-size:13px;text-align:center;">🔬 Anti-ageing</div>
+        </div>
+      </div>
+      <div class="post-body">
+        <div class="post-type">Story Poll · Pillar: The Conversation</div>
+        <div class="post-caption"><strong>Follow-up story strategy:</strong> Post results next day + "based on your votes, here's the product your skin is asking for." Links directly to product page. Turns a poll into a personalised recommendation engine.</div>
+        <div class="post-hashtags">No hashtags needed for Stories — reach comes from location + interest tags</div>
+        <div class="post-goal"><span class="post-goal-label">Goal:</span> Story views + link taps + product page traffic</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 05 CONTENT CALENDAR -->
+  <div class="sh">
+    <span class="sh-num">05</span>
+    <h2 class="sh-title">2-Week Content Calendar</h2>
+    <div class="sh-line"></div>
+  </div>
+
+  <p class="prose" style="margin-bottom:16px;">Posting cadence: <strong>Instagram — 5x/week</strong> (3 feed, 2 stories). <strong>X — 4x/week</strong> (2 original, 2 replies/retweets). Optimal IST timing: feed posts 7–9 AM or 7–10 PM. X: 8–11 PM.</p>
+
+  <div class="calendar">
+    <div class="cal-header">
+      <div></div>
+      <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
+    </div>
+
+    <div class="cal-week">
+      <div class="cal-week-label">Week 1</div>
+      <div class="cal-cell">
+        <div class="cal-post cp-ig">IG Reel — Morning ritual hook</div>
+        <div class="cal-post cp-x">X — "Hot take" tweet on Ayurveda authenticity</div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-post cp-ig">IG Story — Poll: what does your skin need?</div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-post cp-ig">IG Carousel — Kumkumadi ingredient deep-dive</div>
+        <div class="cal-post cp-x">X — Thread: "How to read skincare labels"</div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-post cp-ig">IG Story — Poll results + product rec</div>
+        <div class="cal-post cp-x">X — Reply engagement hour</div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-post cp-ig">IG Static — UGC repost + community spotlight</div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-post cp-ig">IG Reel — "Real skin, real results" video</div>
+        <div class="cal-post cp-x">X — Weekend skincare hot take</div>
+      </div>
+      <div class="cal-cell empty"></div>
+    </div>
+
+    <div class="cal-week">
+      <div class="cal-week-label">Week 2</div>
+      <div class="cal-cell">
+        <div class="cal-post cp-ig">IG Carousel — "AM vs PM routine" educational</div>
+        <div class="cal-post cp-x">X — "Indian skin in Indian summer" tweet</div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-post cp-ig">IG Story — Behind the scenes: ingredient sourcing</div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-post cp-ig">IG Reel — Neem ingredient story + product link</div>
+        <div class="cal-post cp-x">X — Thread: "5 Ayurvedic ingredients your skin needs"</div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-post cp-ig">IG Story — "Swipe up for your skin type quiz"</div>
+        <div class="cal-post cp-x">X — Engage with skincare discourse replies</div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-post cp-both">IG + X — Announce new product drop (coordinated)</div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-post cp-ig">IG Static — Community re-share Saturday</div>
+      </div>
+      <div class="cal-cell empty"></div>
+    </div>
+  </div>
+
+  <!-- 06 KPIs -->
+  <div class="sh">
+    <span class="sh-num">06</span>
+    <h2 class="sh-title">KPIs &amp; Measurement Framework</h2>
+    <div class="sh-line"></div>
+  </div>
+
+  <p class="prose" style="margin-bottom:20px;">Success in month one is not follower growth — it's <strong>content quality signals.</strong> These tell us the strategy is working before numbers scale.</p>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-platform">Instagram · Primary KPIs</div>
+      <div class="kpi-metric">Save rate &gt;5% per post
+        <div class="kpi-why">Saves = intent. The algorithm reads saves as "this content has lasting value" and rewards it with extended reach. Target: 1 in 20 viewers saves.</div>
+      </div>
+      <div class="kpi-metric">Reel watch-through &gt;60%
+        <div class="kpi-why">Tells us the hook is working AND the content holds attention. Below 40% = re-examine first 2 seconds.</div>
+      </div>
+      <div class="kpi-metric">Story reply rate &gt;3%
+        <div class="kpi-why">Replies signal real engagement — people are talking to the brand, not just watching it.</div>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-platform">X (Twitter) · Primary KPIs</div>
+      <div class="kpi-metric">Quote-tweet rate &gt;2%
+        <div class="kpi-why">QTs are X's most powerful amplification. A 2% QT rate on a 1K impression tweet = 20 people bringing it to new audiences. Target this over retweets.</div>
+      </div>
+      <div class="kpi-metric">Follower growth +15%/month
+        <div class="kpi-why">Threads and hot takes should attract skincare-interested followers, not just brand loyalists. Track new follower topic interests.</div>
+      </div>
+      <div class="kpi-metric">Thread engagement &gt;4%
+        <div class="kpi-why">Threads that educate should earn above-average engagement. Below 2% = topic or framing needs rethinking.</div>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-platform">Business · 30-Day Targets</div>
+      <div class="kpi-metric">Link-in-bio clicks +20%
+        <div class="kpi-why">Proxy for purchase intent. Story polls → product recs → link taps is the funnel. Track which content type drives most clicks.</div>
+      </div>
+      <div class="kpi-metric">UGC submissions: 10+ pieces
+        <div class="kpi-why">Community repost strategy should activate existing customers. 10 organic UGC pieces in 30 days = a healthy community signal.</div>
+      </div>
+      <div class="kpi-metric">Brand mention growth +30%
+        <div class="kpi-why">X hot takes and IG conversation content should generate unprompted brand mentions. Track via social listening weekly.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BYLINE -->
+  <div class="byline">
+    <div class="byline-left">
+      <div class="byline-title">Prepared by</div>
+      <div class="byline-name">Stuti Agrawal</div>
+      <div class="byline-contact">
+        stuti.agrawal.372@gmail.com<br>
+        +91-9771067509<br>
+        @stutiagrawal_ · @stutaagrawal
+      </div>
+    </div>
+    <div class="byline-right">
+      <div class="byline-note">"A brand with Auli's ingredient depth shouldn't have to compete on price or aesthetics alone — it should own the ritual conversation. This strategy gets it there."</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
